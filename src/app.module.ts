@@ -1,11 +1,13 @@
-import { ItemsModule } from "./items/items.module";
-import { Module } from "@nestjs/common";
-import { MongooseModule } from "@nestjs/mongoose";
-import { ConfigModule, ConfigService } from "@nestjs/config";
-import configuration from "./config/configuration";
+import { LoggerModule } from './logger/logger.module';
+import { ItemsModule } from './items/items.module';
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import configuration from './config/configuration';
 
 @Module({
   imports: [
+    LoggerModule,
     ItemsModule,
     ConfigModule.forRoot({
       isGlobal: true,
@@ -14,7 +16,7 @@ import configuration from "./config/configuration";
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
-        uri: `${configService.get("MONGOURI")}`,
+        uri: `${configService.get('MONGOURI')}`,
       }),
       inject: [ConfigService],
     }),

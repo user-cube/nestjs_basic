@@ -10,13 +10,18 @@ import {
 import { ItemDTO } from './dto/item.dto';
 import { ItemsService } from './items.service';
 import { Item } from './interfaces/item.interface';
+import { LoggerService } from 'src/logger/logger.service';
 
 @Controller('items')
 export class ItemsController {
-  constructor(private readonly itemsService: ItemsService) {}
+  constructor(
+    private readonly itemsService: ItemsService,
+    private logger: LoggerService,
+  ) {}
 
   @Get()
   findAll(): Promise<Item[]> {
+    this.logger.debug('Get All Items Endpoint');
     return this.itemsService.findAll();
   }
 
