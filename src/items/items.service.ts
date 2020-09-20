@@ -13,10 +13,9 @@ export class ItemsService {
   }
 
   async findById(id: string): Promise<Item> {
-    if (id.match(/^[0-9a-fA-F]{24}$/)) {
-      return await this.itemModel.findOne({ _id: id });
-    }
-    return null;
+    return id.match(/^[0-9a-fA-F]{24}$/)
+      ? await this.itemModel.findOne({ _id: id })
+      : null;
   }
 
   async create(item: ItemDTO) {
