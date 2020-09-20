@@ -3,13 +3,13 @@ import { Document } from 'mongoose';
 
 @Schema()
 export class Item extends Document {
-  @Prop()
+  @Prop({ type: String, required: true })
   name: string;
 
-  @Prop()
+  @Prop({ type: Number, required: true })
   quantity: number;
 
-  @Prop()
+  @Prop({ type: String, required: false })
   description: string;
 }
 
