@@ -20,28 +20,28 @@ export class ItemsController {
   ) {}
 
   @Get()
-  findAll(): Promise<Item[]> {
+  async findAll(): Promise<Item[]> {
     this.logger.debug('Get All Items Endpoint');
     return this.itemsService.findAll();
   }
 
   @Get(':id')
-  findById(@Param() param): Promise<Item> {
+  async findById(@Param() param): Promise<Item> {
     return this.itemsService.findById(param.id);
   }
 
   @Post()
-  create(@Body() itemDTO: ItemDTO): Promise<Item> {
+  async create(@Body() itemDTO: ItemDTO): Promise<Item> {
     return this.itemsService.create(itemDTO);
   }
 
   @Put(':id')
-  update(@Param() param, @Body() itemDTO: ItemDTO): Promise<Item> {
+  async update(@Param() param, @Body() itemDTO: ItemDTO): Promise<Item> {
     return this.itemsService.update(param.id, itemDTO);
   }
 
   @Delete(':id')
-  delete(@Param() param): Promise<Item> {
+  async delete(@Param() param): Promise<Item> {
     return this.itemsService.delete(param.id);
   }
 }
